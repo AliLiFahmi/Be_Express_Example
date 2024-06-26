@@ -34,29 +34,28 @@ app.use("/api/add/users", usersRouter);
 app.use("/api/add/auth", authRouter);
 
 // middleware error handler
-app.use(notFound)
-app.use(errorHandler)
-
-// start port express
-const port = process.env.PORT || 3900;
-app.listen(port, () => {
-    console.log(`Server connect http://localhost:${port}`)
-})
+app.use(notFound);
+app.use(errorHandler);
 
 // fungsi untuk menjalankan migration , connect ke database , & menjalankan server
 async function running() {
-    // menjalankan migtarion database
-    await runMigrations();
-    
-    // mengkoneksikan database
-	connect();
+    try {
+        // menjalankan migrasi database
+        await runMigrations();
 
-    // menjalankan server express
-    const port = process.env.PORT || 3900;
-    app.listen(port, () => {
-        console.log(`Server connect http://localhost:${port}`)
-    })
+        // mengkoneksikan database
+        connect();
+
+        // menjalankan server express
+        const port = process.env.PORT || 3900;
+        app.listen(port, () => {
+            console.log(`Server connect http://localhost:${port}`);
+        });
+    } catch (error) {
+        console.error('Failed to start server:', error);
+        process.exit(1);
+    }
 }
 
 // menjalankan fungsi running
-running()
+running();
