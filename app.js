@@ -43,6 +43,7 @@ app.listen(port, () => {
     console.log(`Server connect http://localhost:${port}`)
 })
 
+// fungsi untuk menjalankan migration , connect ke database , & menjalankan server
 async function running() {
     // menjalankan migtarion database
     await runMigrations();
@@ -56,3 +57,6 @@ async function running() {
         console.log(`Server connect http://localhost:${port}`)
     })
 }
+
+// menjalankan fungsi running
+running()
