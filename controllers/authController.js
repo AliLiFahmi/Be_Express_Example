@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
 const crypto = require("crypto");
-const { connection } = require('../config/conn');
+const { connection } = require('../conn');
 
 // Fungsi untuk menghash password
 const hashPassword = (password) => {

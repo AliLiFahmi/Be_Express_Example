@@ -1,4 +1,4 @@
-const { connection } = require('../config/conn');
+const { connection } = require('../conn');
 
 // mengambil semua data user
 exports.getAllData = (req, res) => {
